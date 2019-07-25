@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>03_1.탐색메소드-후손자식</title>
+   <style>
+      #result{padding: 10px; background: #000; color:#fff;}
+      .active{background: hotpink;}
+      .choice{background: yellow; border:1px solid red;}
+   </style>
+   <script src="js/jquery-3.4.1.min.js"></script>
+   <script>
+      $(function(){
+         //후손, 자식찾기 
+         //find() 후손찾기
+         //children() 자식찾기         
+         //[사용 조건]부모를 먼저 선택한 후 부모를 기준으로 자식 또는 후손을 찾아야한다.
+
+         //1. .gnb의 후손 중 클래스가 active인것 찾기 
+         $('.gnb').find('.active')
+
+         //2. div의 후손 중 span찾기 
+         $('div').find('span')
+
+         //3. div의 자식 중 span찾기
+         $('div').children('span')
+
+         //4. .box의 자식 중 span찾기 
+         $('.box').children('span')
+
+         //5. .box의 후손 중 마지막 span찾기 
+         $('.box').find('span:last')
+
+         //6. .box의 후손 중 첫번째 span찾기 
+         $('.box').find('span:first')
+
+         //7. .box의 후손 중 두번째 span찾기 
+         $('.box').find('span:nth-of-type(2)').addClass('choice');
+
+      })
+   </script>
+</head>
+<body>
+   <div id="result">검색결과: <span></span></div>
+   <!-- h$*6{제목$} -->
+   <h1>제목1</h1>
+   <h2>제목2</h2>
+   <h3>제목3</h3>
+   <h4>제목4</h4>
+   <h5>제목5</h5>
+   <h6>제목6</h6>
+
+   <!-- ul>li*4>a[href=#]>{링크$} -->
+   <ul class="gnb">
+      <li><a href="#" class="active">링크1</a></li>
+      <li><a href="#">링크2</a></li>
+      <li><a href="#">링크3</a></li>
+      <li>
+         <a href="#">링크4</a>
+         <ul>
+            <li><a href="#" class="active">링크4-1</a></li>
+            <li><a href="#">링크4-2</a></li>            
+         </ul>
+      </li>
+   </ul>
+
+   <div class="box">
+      부모div 
+      <!-- span*3>{span$} -->
+      <span>span1</span>
+      <span>span2</span>
+      <span>span3</span>
+      <div>
+         자식div
+         <p>문장</p>
+         <span>span1</span>
+         <span>span2</span>
+         <span>span3</span>
+      </div>
+   </div>
+
+   <form action="#">
+      <button class="btn" type="button">일반버튼</button>
+      <button class="btn" type="reset">초기화버튼</button>
+      <button class="btn" type="submit">전송버튼</button>
+      <input class="btn" type="button" value="일반버튼">
+      <input class="btn" type="reset" value="초기화버튼">
+      <input class="btn" type="submit" value="전송버튼">
+      <br>
+      <input type="text">
+      <input type="password">
+      <input type="hidden">
+      <br>
+      <div class="checkbox">
+         <label><input type="checkbox" checked>체크박스1</label>
+         <label><input type="checkbox">체크박스2</label>
+      </div>
+      <div class="radio">
+         <label><input type="radio" name="radioGroup" checked>라디오1</label>
+         <label><input type="radio" name="radioGroup">라디오2</label>
+      </div>
+      <textarea cols="30" rows="10"></textarea>
+      <br>
+      <select name="colorSelect">
+         <option value="red">빨간색</option>
+         <option value="green">초록색</option>
+         <option value="blue">파란색</option>
+      </select>
+   </form>
+</body>
+</html>

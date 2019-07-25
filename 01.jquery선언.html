@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>01.jquery선언</title>
+   <!-- 1. 다운로드한 파일 연결해서 사용하기 -->
+   <!-- <script src="js/jquery-3.4.1.min.js"></script> -->
+
+   <!-- 2. CDN방식 (외부 사이트에서 소스를 불러오기) -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+   <script>
+      //javascript에서 window.onload=function(){}구문과 똑같은 역할을 한다.
+      //문서가 준비가 되면 콜백함수 안의 구문을 실행한다.
+      //1. 정식구문 
+      $(document).ready(function(){
+
+      //2. 축약형 
+      $(function(){   
+         //요소이전에 스크립트 코드를 작성했을 경우
+         $('h1').css('color','red');
+
+         //javascript로 작성하였을 경우
+         // var h1=document.getElementsByTagName('h1');
+         // for (let index = 0; index < h1.length; index++) {
+         //    h1[index].style.color='red';            
+         // }
+      })      
+   </script>
+</head>
+<body>
+   <h1>제목</h1>
+   <h1>제목</h1>
+   <h1>제목</h1>
+   <script>
+      //요소다음에 스크립트 코드를 작성했을 경우
+      // $('h1').css('color','red');
+   </script>
+</body>
+</html>
