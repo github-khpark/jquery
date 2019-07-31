@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>04_10.조작메소드-클래스</title>
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+   <style>      
+      *{margin: 0; padding: 0;}
+      #box{
+         width: 100px; height: 100px; background: orange;
+         border:1px solid #000;
+         transition: 0.5s;
+      }
+      /* #box:hover{
+         background: green; border-radius: 50px;
+      }       */
+
+      #box.circle{
+         background: green; border-radius: 50px;
+      }  
+      #box.border{
+         border:5px solid #000;
+      }  
+
+   </style>
+   <script src="js/jquery-3.4.1.min.js"></script>
+   <script>
+      $(function(){
+         //addClass() : 클래스를 추가한다. 
+         //removeClass() : 클래스를 제거한다. 
+         //toggleClass() : 클래스 값의 상태를 보고 addClass() 또는 removeClass()를 수행한다.
+         //hasClass() : 클래스를 가지고 있는지에 대한 여부를 논리값으로 반환
+
+         //css에서 작성한 #box:hover 선택자와 동일한 처리
+         // $('#box').hover(
+         //    function(){//마우스를 올렸을 때
+         //       $(this).addClass('circle');
+         //    },function(){//마우스를 땠을 때
+         //       $(this).removeClass('circle');
+         //    }
+         // )
+
+         //hover이벤트 + toggleClass()를 사용하여 똑같이 처리하기 
+         // $('#box').hover(
+         //    function(){
+         //       $(this).toggleClass('circle');
+         //    }
+         // )
+
+         //hover이벤트 + addClass(), removeClass(), hasClass()   
+         // $('#box').hover(
+         //    function(){
+         //       if($(this).hasClass('circle')){
+         //          $(this).removeClass('circle');
+         //       }else{
+         //          $(this).addClass('circle');
+         //       }
+         //    }
+         // )
+
+         //버튼을 누를때마다 아이콘 모양 변경하기
+         $('button').click(function(){
+            // toggleClass()메소드에 클래스 이름을 2개를 넣었을 경우
+            // 현재 상태를 보고 2개의 클래스 중에 적용되어 있지 않은 클래스로 교체해준다.
+            // toggleClass()메소드에 적혀있지 않은 클래스 이름은 영향을 주지 않는다. => fas클래스
+            // *만약 태그에 toggleClass()에 적혀있는 값이 없다면 toggleClass()에 작성된 클래스를 한꺼번에 넣어준다.
+            // 따라서 둘중 하나의 값으로 적용하고 싶다면 태그에 둘중 하나의 값을 기본 셋팅해야한다. 
+            $(this).toggleClass('fa-times fa-bars');
+         });
+
+         //이벤트를 여러개 연결하여 클래스메소드 사용하기
+         //on() : 이벤트 연결메소드
+         $('#box')
+         .on('mouseenter', function(){
+            $(this).addClass('circle');
+         })
+         .on('mouseleave', function(){
+            $(this).removeClass('circle');
+            
+            //만약 removeClass()메소드에 클래스 값을 지정을 안한다면 현재 클래스값이 있을 경우 모두 제거
+            // $(this).removeClass();
+         })
+         .on('click', function(){
+            $(this).toggleClass('border');
+         })
+      })
+   </script>
+</head>
+<body>
+  <div id="box" class="border"></div>
+  
+  <!-- fa-times 닫기, fa-bars 메뉴 -->
+  <button class="fas fa-bars"></button>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>03_7.탐색메소드-특정요소포함여부</title>
+   <style>
+      #result{padding: 10px; background: #000; color:#fff;}
+      .active{background: hotpink;}
+      .choice{background: yellow; border:1px solid red;}
+   </style>
+   <script src="js/jquery-3.4.1.min.js"></script>
+   <script>
+      $(function(){
+         //has() : 부모가 하위 선택자를 가지고 있는지 알 수 있는 메소드 
+
+         //1. .list가 가지고 있는 하위 요소에 .active가 적용되어 있다면 .list에 효과주기
+         $('.list').has('.active')
+
+         //2. .gnb도 테스트
+         $('.gnb').has('.active')
+
+         //3. 두개의 ul중 a를 가지고 있는 요소에 효과주기
+         $('ul').has('a').addClass('choice');
+
+      })
+   </script>
+</head>
+<body>
+   <div id="result">검색결과: <span></span></div>
+
+   <!-- ul>li*10>{리스트$} -->
+   <ul class="list">
+      <li>리스트1</li>
+      <li>리스트2</li>
+      <li>리스트3</li>
+      <li>리스트4</li>
+      <li>리스트5</li>
+      <li>리스트6</li>
+      <li class="active">리스트7</li>
+      <li>리스트8</li>
+      <li>리스트9</li>
+      <li>리스트10</li>
+   </ul>
+
+   <ul class="gnb">
+      <li><a href="#">링크1</a></li>
+      <li><a href="#" class="active">링크2</a></li>
+      <li><a href="#">링크3</a></li>
+   </ul>
+</body>
+</html>

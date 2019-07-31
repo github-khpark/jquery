@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>04_5.조작메소드-스타일</title>
+   <style>
+      /* .box{
+         float: left;
+         margin: 10px;
+         width: 100px;
+         height: 100px;
+         background-color: red;
+      }    */
+   </style>
+   <script src="js/jquery-3.4.1.min.js"></script>
+   <script>
+      $(function(){
+         //css() : 스타일 조작 메소드 
+         /*
+            css속성명 중 하이픈(-)이 들어가는 속성은 두가지 방식으로 사용한다. 
+            ex)background-color
+            1. 'background-color' : 속성명을 그대로 사용하는 대신 문자열로 감싼다.
+            2. backgroundColor    : 하이픈을 빼고 두번째단어부터 첫글자를 대문자로 변경한다.
+         */
+
+         //1. 선택자를 여러번 호출하고 호출한 만큼 css()메소드도 호출하기 
+         // $('.box').css('float','left');
+         // $('.box').css('margin','10px');
+         // $('.box').css('width','100px');
+         // $('.box').css('height','100px');
+         // $('.box').css('background-color','red');
+
+         //2. 선택자를 한번만 호출하고 css()메소드를 여러번 사용하기 
+         //메소드 체이닝 기법 
+         // $('.box')
+         // .css('float','left')
+         // .css('margin','10px')
+         // .css('width','100px')
+         // .css('height','100px')
+         // .css('background-color','red');
+
+         //3. 선택자 한번 호출, css()메소드도 한번 사용 
+         $('.box').css({
+            float:'left',
+            margin:'10px',
+            //단위를 넣지않고 숫자만 넣는다면 기본 px단위로 적용된다.
+            width:100,
+            height:'100px',
+            // backgroundColor:'red'
+            'background-color':'red'
+         })
+
+         //4. 현재 박스의 가로 크기는?
+         var width = $('.box').css('width');
+         $('.box').text(width)
+         
+      })
+   </script>
+</head>
+<body>
+   <div class="box"></div>
+</body>
+</html>

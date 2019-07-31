@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>03_3.탐색메소드-조상부모</title>
+   <style>
+      #result{padding: 10px; background: #000; color:#fff;}
+      .active{background: hotpink;}
+      .choice{background: yellow; border:1px solid red;}
+      .wrap div{padding: 20px; border: 1px solid #000;}
+      .position{position: relative;}
+   </style>
+   <script src="js/jquery-3.4.1.min.js"></script>
+   <script>
+      $(function(){
+         //조상, 부모찾기
+         //parents() 조상(부모들)찾기
+         //parent() 부모찾기
+         //offsetParent() position값이 설정되어 있는 가장 가까운 부모찾기
+         //closest() 메소드안에 설정한 이름과 일치하는 가장 가까운 부모찾기
+         //[사용조건]자식을 먼저 선택한 후 자식을 기준으로 부모를 찾아야한다.
+
+         //1. .wrap안에 있는 span의 부모들 중 div인 부모찾기
+         $('.wrap span').parents('div')//부모이름 설정 필요
+
+         //2. .wrap안에 있는 span의 부모찾기
+         $('.wrap span').parent()
+
+         //3. .wrap안에 있는 span의 부모들 중 position이 설정되어 있는 가장가까운 부모찾기
+         $('.wrap span').offsetParent()
+
+         //4. .wrap안에 있는 span의 부모들 중 이름이 .position인 가장 가까운 부모찾기
+         $('.wrap span').closest('.position')//메소드 안에 이름 설정 필요
+
+         //5. 체크박스가 체크되어있는 상태의 부모선택하기(일회성)
+         $('[type=checkbox]:checked').parent()
+
+         //6. 라디오가 체크되어 있는 상태의 부모선택하기(일회성)
+         $('[type=radio]:checked').parent()
+
+         //7. 라디오의 상태값이 변경될 때마다 체크를 해서 클래스를 적용해본다.
+         $('[type=radio]').change(function(){   //change() 상태가 변경될 때마다 동작
+            console.log('상태값이 변경됨');    
+            //라벨에 적용된 클래스값 지우기 
+            $('.radio label').removeClass('choice');
+            //현재 선택하고 있는 라디오가 체크된 상태이면 부모쪽에 클래스를 적용한다.
+            console.log($(this).is(':checked'));            
+            // if($(this).is(':checked')){   //is 그러한가 를 물음
+               $(this).parent().addClass('choice');
+            // }
+         })
+
+         //8. 체크박스의 상태값이 변경할 때마다 검사를 해서 클래스를 적용해본다.
+         $('[type=checkbox]').change(function(){
+            $('.checkbox label').removeClass('choice');
+            if($(this).is(':checked')){
+               $(this).parent().addClass('choice');
+            }
+         })
+
+      })
+   </script>
+</head>
+<body>
+   <div id="result">검색결과: <span></span></div>
+   
+   <div class="wrap">
+      <div class="position">
+         <div class="position">
+            <div>
+               <div>
+                  <span>자식</span>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <!-- ul>li*4>a[href=#]>{링크$} -->
+   <ul class="gnb">
+      <li><a href="#" class="active">링크1</a></li>
+      <li><a href="#">링크2</a></li>
+      <li><a href="#">링크3</a></li>
+      <li>
+         <a href="#">링크4</a>
+         <ul>
+            <li><a href="#" class="active">링크4-1</a></li>
+            <li><a href="#">링크4-2</a></li>            
+         </ul>
+      </li>
+   </ul>
+
+   <div class="box">
+      부모div 
+      <!-- span*3>{span$} -->
+      <span>span1</span>
+      <span>span2</span>
+      <span>span3</span>
+      <div>
+         자식div
+         <p>문장</p>
+         <span>span1</span>
+         <span>span2</span>
+         <span>span3</span>
+      </div>
+   </div>
+
+   <form action="#">
+      <button class="btn" type="button">일반버튼</button>
+      <button class="btn" type="reset">초기화버튼</button>
+      <button class="btn" type="submit">전송버튼</button>
+      <input class="btn" type="button" value="일반버튼">
+      <input class="btn" type="reset" value="초기화버튼">
+      <input class="btn" type="submit" value="전송버튼">
+      <br>
+      <input type="text">
+      <input type="password">
+      <input type="hidden">
+      <br>
+      <div class="checkbox">
+         <label><input type="checkbox" checked>체크박스1</label>
+         <label><input type="checkbox">체크박스2</label>
+      </div>
+      <div class="radio">
+         <label><input type="radio" name="radioGroup" checked>라디오1</label>
+         <label><input type="radio" name="radioGroup">라디오2</label>
+      </div>
+      <textarea cols="30" rows="10"></textarea>
+      <br>
+      <select name="colorSelect">
+         <option value="red">빨간색</option>
+         <option value="green">초록색</option>
+         <option value="blue">파란색</option>
+      </select>
+   </form>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>04_1.조작메소드-내용</title>
+   <script src="js/jquery-3.4.1.min.js"></script>
+   <script>
+      $(function(){
+         //text() : 텍스트 조작 
+         //html() : 텍스트+태그 조작
+
+         //1. 내용 변경(추가)하기 text('내용작성'), html('내용작성')
+         $('h1').eq(0).text('<a href="#">text메소드 사용</a>');
+         $('h1').eq(1).html('<a href="#">html메소드 사용</a>');
+
+         //2. 내용 가져오기 text(), html()
+         var text = $('h1').eq(1).text(); //순수하게 텍스트만 획득
+         var html = $('h1').eq(1).html(); //태그가 있다면 태그까지 포함해서 가져올 수 있다.
+         console.log(text);
+         console.log(html);
+         
+         $('div span').html(text+html);
+
+         //만약 빈문자열을 넣게되면 empty()를 한것과 같은 효과가 있다.
+         $('h1').eq(0).text('');
+      })
+   </script>
+</head>
+<body>
+   <h1>제목1</h1>
+   <h1>제목2</h1>
+
+   <div>
+      결과출력
+      <span></span>
+   </div>
+</body>
+</html>

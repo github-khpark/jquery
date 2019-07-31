@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>04_11.조작메소드-요소붙이기</title>
+   <style>
+      #wrap{background: pink;}
+      .new{background: black; color:white;}
+   </style>
+
+   <script src="js/jquery-3.4.1.min.js"></script>
+   <script>
+      $(function(){
+         /*
+            A : 붙이는 기준, B : 붙이는 대상
+            $(B).appendTo(A)     : A의 마지막 자식요소로 B붙이기
+            $(B).prependTo(A)    : A의 첫 자식요소로 B붙이기
+            $(B).insertAfter(A)  : A의 이후 위치에 형제요소로 B붙이기
+            $(B).insertBefore(A) : A의 이전 위치에 형제요소로 B붙이기
+
+            $(A).append(B)       : A의 마지막 자식요소로 B붙이기
+            $(A).prepend(B)      : A의 첫 자식요소로 B붙이기
+            $(A).after(B)        : A의 이후 위치에 형제요소로 B붙이기
+            $(A).before(B)       : A의 이전 위치에 형제요소로 B붙이기
+         */
+
+         // 새로운 요소를 어떤 기준으로 붙이기
+         // $('<div class="new">$(B).위치(A)</div>').appendTo('#wrap');
+         // $('<div class="new">$(B).위치(A)</div>').prependTo('#wrap');
+         // $('<div class="new">$(B).위치(A)</div>').insertAfter('#wrap');
+         // $('<div class="new">$(B).위치(A)</div>').insertBefore('#wrap');
+
+         // $('#wrap').append('<div class="new">$(B).위치(A)</div>');
+         // $('#wrap').prepend('<div class="new">$(B).위치(A)</div>');
+         // $('#wrap').after('<div class="new">$(B).위치(A)</div>');
+         // $('#wrap').before('<div class="new">$(B).위치(A)</div>');
+
+         // 요소의 위치를 이동시키기
+         // 기존에 있는 요소를 특정기준으로 이동시킬 때 이동시키고자 하는 요소를 $()선택자 문법으로 작성하여 메소드안에 넣어준다.
+         // *만약 $()선택자를 사용하지 않고 strong문자열만 넣게되면 이동을 하는 것이 아니라
+         // strong이라는 문자열을 해당 위치에 새롭게 붙여준다.
+
+         // $('.box').append($('strong'));
+         // $('.box').prepend($('strong'));
+         // $('.box').after($('strong'));
+         // $('.box').before($('strong'));
+
+         // clone() : 요소를 복제하는 메소드
+         // 요소를 복제해서 붙여넣기
+         console.log($('strong').clone());
+         $('strong').clone().insertBefore('.box');
+      })
+   </script>
+</head>
+<body>
+   <!-- insertBefore -->
+   <!-- before -->
+   <div id="wrap">
+      <!-- prepend -->
+      <!-- prependTo -->
+      <div>박스</div>
+      <!-- appendTo -->
+      <!-- append -->
+   </div>
+   <!-- append -->
+   <!-- insertAfter -->
+   <div class="box">박스2</div>
+   <strong>굵은글씨</strong>
+</body>
+</html>

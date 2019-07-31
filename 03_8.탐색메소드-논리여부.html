@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>03_8.탐색메소드-논리여부</title>
+   <style>
+      #result{padding: 10px; background: #000; color:#fff;}
+      .active{background: hotpink;}
+      .choice{background: yellow; border:1px solid red;}
+
+      section div{
+         width: 100px; height: 100px; margin: 5px;
+         float: left; background: green;
+      }
+      .blue{background: blue;}
+      .red{background: red;}
+      section p{border:1px solid #000; clear: left;}      
+   </style>
+   <script src="js/jquery-3.4.1.min.js"></script>
+   <script>
+      $(function(){
+         //is() : 선택자가 내가 정한 기준인 상태인지 아닌지를 논리값으로 반환하는 메소드
+         //is()메소드를 사용하면 조건문을 작성할 수 있다.
+
+         //1. div안에 p를 클릭해서 부모가 클래스값이 box1이면 부모가 box1입니다.를 출력 
+         // 아니면 부모가 box2입니다를 출력 
+         $('div p').click(function(){
+            //내가 클릭하는 p의 부모가 클래스값이 box1인가?
+            if($(this).parent().is('.box1')){
+               alert('부모가 box1입니다.');
+            }else{//box1이 아니면
+               alert('부모가 box2입니다.');
+            }
+         })
+
+         //2. section안에 div를 클릭할 때마다 상태를 검사 후 출력하기 
+         $('section div').click(function(){
+            if($(this).is(':first-child')){
+               $('p span').text('첫번째 div입니다.');
+            }else if($(this).is('.blue')){
+               $('p span').text('파랑색 div입니다.');
+            }else if($(this).is('.red')){
+               $('p span').text('빨강색 div입니다.');
+            }else if($(this).is(':contains(box)')){ 
+               //:contains('문자열')=>특정 문자열을 포함하고 있는지 판별
+               $('p span').text('box입니다.');
+            }else{
+               $('p span').text('초록색 div입니다.');
+            }
+         })
+
+
+      })
+   </script>
+</head>
+<body>
+   <div class="box1">
+      <p>문장</p>
+   </div>
+   <div class="box2">
+      <p>문장</p>
+   </div>
+
+   <section>
+      <div></div>
+      <div class="blue"></div>
+      <div></div>
+      <div class="red"></div>
+      <div>box</div>
+      <div class="blue"></div>
+      <p>결과: <span></span></p>
+   </section>
+
+
+</body>
+</html>

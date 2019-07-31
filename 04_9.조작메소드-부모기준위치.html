@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>04_9.조작메소드-부모기준위치</title>
+   <style>      
+      *{margin: 0; padding: 0;}
+      .box{
+         width: 100px; height: 100px; background: orange;
+      }
+      .wrap{position: relative; width: 200px; height: 200px; background: pink;}
+      .wrap .box{
+         position: absolute;
+         left:100px; top:100px;
+      }
+
+   </style>
+   <script src="js/jquery-3.4.1.min.js"></script>
+   <script>
+      $(function(){
+         //position() : 부모영역에 position값이 설정되어 있을 경우 
+         //             부모영역을 기준으로 위치값을 구하는 메소드       
+
+         //각 박스에 순차적으로 접근하여 위치값 구하기 
+         $('.box').each(function(i, el){
+            //$(this)==$(el)
+            // var position=$(this).offset();//offset()으로 좌표값을 찍었을 때는 화면을 기준으로 구한다.
+            var position=$(this).position();
+            $(this).html(position.left+', '+position.top);
+         }) 
+
+      })
+   </script>
+</head>
+<body>
+  <div class="box"></div>
+  <div class="wrap">
+      <div class="box"></div>
+  </div>
+
+</body>
+</html>

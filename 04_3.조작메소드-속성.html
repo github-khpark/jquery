@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>04_3.조작메소드-속성</title>
+   <script src="js/jquery-3.4.1.min.js"></script>
+   <script>
+      $(function(){
+         /*
+            attr() : html문서 속성(attribute)을 제어하는 메소드
+                     정적인 속성값을 제어한다.
+                     속성에 작성된 보이는 값을 가져온다.
+                     내가 만든 속성을 조작한다.
+                     이미지 속성, 내가만든 속성등을 제어할 때 사용(form요소와 관련되지 않은)
+            prop() : html DOM 즉 javascript의 속성(property)을 제어하는 메소드
+                     동적인 속성값을 제어한다.
+                     속성의 원본값을 가져온다.
+                     내가 만든 속성을 조작할 수 없다.
+                     form안에 작성하는 input, select, textarea와 같은 태그의 속성값을 제아할 때 사용
+            removeAttr() : 속성을 지우는 메소드
+         */
+
+         //1. 이미지의 src, alt, 내가만든 속성(data-img) 값 변경하기
+         //선택자3번 attr()메소드 3번 사용
+         // $('img').attr('src', 'img/pooh.gif');
+         // $('img').attr('alt', '움직이는 푸');
+         // $('img').attr('data-img', '푸');
+
+         //선택자1번 attr()메소드 1번 사용, 메소드 안에 객체를 넣어서 처리한다.
+         $('img').attr({
+            'src':'img/pooh.gif',
+            'alt': '움직이는 푸',
+            'data-img': '푸'
+         });
+
+         //2. 이미지의 src, alt, 내가만든 속성(data-img) 값 가져오기
+         var src = $('img').attr('src');
+         var alt = $('img').attr('alt');
+         var dataImg = $('img').attr('data-img');
+         $('.result').html(`
+            src: ${src}<hr>
+            alt: ${alt}<hr>
+            data-img: ${dataImg}<hr>
+         `);
+
+         //*내가 만든 속성명이 앞이 data-로 시작하면 attr대신 data()메소드를 사용할 수 있다.
+         var dataImg2 = $('img').data('img');
+         console.log(dataImg2);
+
+         //3. 텍스트입력창에서 입력된 값 변경하기
+         // $('input').attr('value', 'ABC'); //value속성이 태그에 명시된다.
+         $('input').prop('value', 'ABC');    //value속성을 따로 태그에 명시하지 않아도 상태는 변경가능
+
+         //4. 이미지에서 내가 만든 속성을 prop()메소드로 제어하기
+         $('img').prop('data-img', '내가만든 푸'); //내가만든 속성 변경불가
+
+         //5. 텍스트입력창에 입력된 값 가져오기
+         // var val = $('input').attr('value');//태그안에 value가 명시되어 있다면 값을 가져올 수 있다.
+         var val = $('input').prop('value');//태그안에 value가 명시되어 있지 않더라도 값을 가져올 수 있다.
+         $('.result').text(val);
+
+         //6. 텍스트입력창에 글자를 입력할 때마다 값을 가져와서 출력하기
+         $('input').keyup(function(){
+            //현재 값이 동적으로 계속 변화하고 있는 상태에서 변화된 값을 가져오는 것은 prop()
+            var val = $('input').prop('value');
+            // var val = $('input').attr('value');
+            $('.result').text(val);
+         })
+
+         //7. 이미지의 값을 prop()로 가져와서 출력하기
+         //실제 이미지가 있는 full경로값을 가져온다. 속성의 원본값을 가져온다.
+         var src = $('img').prop('src');
+         $('.result').text(src);
+
+         //8. removeAttr()를 사용해서 속성 제거하기
+         //메소드()안에 제거하고자 하는 속성명을 넣는다.
+         $('img').removeAttr('data-img');
+      })
+   </script>
+</head>
+<body>
+   <img src="img/pooh.png" alt="정지 푸" data-img="pooh">
+   <div class="result"></div>
+
+   <input type="text" value="abc">
+</body>
+</html>

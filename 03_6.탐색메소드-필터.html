@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>03_6.탐색메소드-필터</title>
+   <style>
+      #result{padding: 10px; background: #000; color:#fff;}
+      .active{background: hotpink;}
+      .choice{background: yellow; border:1px solid red;}
+   </style>
+   <script src="js/jquery-3.4.1.min.js"></script>
+   <script>
+      $(function(){
+         //filter() : 필터링되는 기준을 메소드안에 정한 후 해당 기준과 일치하는 것을 찾는 메소드
+         /*
+            메소드안에 넣을 수 있는 값
+            function(){}, :first, :last, :lt(index), :gt(index), :eq(index),
+            :even, :odd, :not(), css선택자
+         */
+
+         //1. .gnb안에 a중 클래스가 active가 아닌 것
+          var result=$('.gnb li a').filter(':not(.active)').text();
+         //2. .gnb안에 a중 클래스가 active인 것     
+         result=$('.gnb li a').filter('.active').text();
+         $('#result span').text(result);
+
+         //3. function(){}를 사용하여 .list안의 리스트 목록중 2의 배수번째에 
+         //   해당되는 요소에 변화주기
+         $('.list li').filter(function(i){
+            console.log(i);
+            if(i%2==0){//2의 배수번째를 찾는다.
+               //기존의 내용을 지우고 인덱스숫자로 변화주기
+               $(this).text(i);
+            }            
+         })
+
+         //4. .list안에 목록 중 첫번째 찾기
+         $('.list li').filter(':first')
+         //5. .list안에 목록 중 마지막 찾기 
+         $('.list li').filter(':last')
+         //6. .list안에 목록 중 인덱스 3보다 작은 것 찾기 =prevAll()
+         $('.list li').filter(':lt(3)')
+         //7. .list안에 목록 중 인덱스 3보다 큰 것 찾기 =nextAll()
+         $('.list li').filter(':gt(3)')
+         //8. .list안에 목록 중 인덱스 3 찾기
+         $('.list li').filter(':eq(3)')
+         //9. .list안에 목록 중 짝수번째
+         $('.list li').filter(':even')
+         //10. .list안에 목록 중 홀수번째
+         $('.list li').filter(':odd')
+         //11. .list안에 목록 중 0번째가 아닌 것 
+         $('.list li').filter(':not(:eq(0))')
+         
+
+         //slice(start index, end index) *end인덱스는 =1한 위치
+         //시작인덱스위치 부터 끝인덱스 위치(-1)까지의 요소를 선택한다.
+         $('.list li').slice(4, 6).addClass('choice');
+      })
+   </script>
+</head>
+<body>
+   <div id="result">검색결과: <span></span></div>
+   
+   <!-- ul>li*10{리스트$} -->
+   <ul class="list">
+      <li>리스트1</li>
+      <li>리스트2</li>
+      <li>리스트3</li>
+      <li>리스트4</li>
+      <li>리스트5</li>
+      <li>리스트6</li>
+      <li class="active">리스트7</li>
+      <li>리스트8</li>
+      <li>리스트9</li>
+      <li>리스트10</li>
+   </ul>
+
+   <ul class="gnb">
+      <li><a href="#">링크1</a></li>
+      <li><a href="#" class="active">링크2</a></li>
+      <li><a href="#">링크3</a></li>
+   </ul>
+
+
+</body>
+</html>

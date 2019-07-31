@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>04_8.조작메소드-화면기준위치</title>
+   <style>      
+      *{margin: 0; padding: 0;}
+      .box{
+         width: 100px; height: 100px; background: orange;
+      }
+   </style>
+   <script src="js/jquery-3.4.1.min.js"></script>
+   <script>
+      $(function(){
+         //offset() : 화면을 기준으로 선택한 요소의 x, y좌표값 제어하는 메소드 
+
+         //인덱스 1번째에 해당되는 박스의 위치 변경 
+         $('.box').eq(1).offset({
+            top:200,
+            left:200
+         })
+
+         //각 박스에 순차적으로 접근하여 위치값 구하기
+         $('.box').each(function(i, el){
+            //$(this)==$(el)
+            var offset = $(this).offset();
+            $(this).html(offset.left+', '+offset.top);
+         })
+
+      })
+   </script>
+</head>
+<body>
+  <div class="box"></div>
+  <div class="box"></div>
+
+</body>
+</html>

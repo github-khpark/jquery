@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>03_9.탐색메소드-연속구조</title>
+   <style>
+      .active{background: hotpink;}
+      .choice{background: yellow; border:1px solid red;}
+   </style>
+   <script src="js/jquery-3.4.1.min.js"></script>
+   <script>
+      $(function(){
+        //each(function(index, element{}) : 일치하는 요소를 모두 찾아서 순차적으로 접근한 후 처리할 구문을 작성 
+
+        $('li').each(function(i, el){
+            console.log(i, el);         
+            if(i%2==0){
+               $(el).addClass('choice');
+            }else{
+               $(el).addClass('active');
+            }
+        })
+
+      })
+   </script>
+</head>
+<body>
+   
+   <ul class="list">
+      <li>리스트1</li>
+      <li>리스트2</li>
+      <li>리스트3</li>
+      <li>리스트4</li>
+      <li>리스트5</li>
+      <li>리스트6</li>
+      <li>리스트7</li>
+      <li>리스트8</li>
+      <li>리스트9</li>
+      <li>리스트10</li>
+   </ul>
+   
+</body>
+</html>

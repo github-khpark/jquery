@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>05.효과메소드</title>
+   <style>
+      .box{border:1px solid #000;}
+   </style>
+   <script src="js/jquery-3.4.1.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha256-KM512VNnjElC30ehFwehXjx1YCHPiQkOPmqnrWtpccM=" crossorigin="anonymous"></script>
+   <script>
+      $(function(){
+         /*
+            보이기 숨기기 효과를 가지고 있는 메소드
+            1. 크기 : show(), hide(), toggle()
+            2. 슬라이드 : slideDown(), slideUp(), slideToggle()
+            3. 투명도 : fadeIn(), fadeOut(), fadeToggle()
+
+            효과메소드는 ()안에 지정할 수 있는 값
+            효과메소드이름(speed, easing, callback)
+            speed : 숫자를 밀리세컨즈로 넣거나 slow, normal, fast문자열을 넣는다.
+            easing : http://api.jqueryui.com/easings 로 가서 이름을 검색해서 사용
+                     jqueryui스크립트 소스를 포함시킨다.
+
+            delay() : 특정시간만큼 지연시키는 메소드
+         */
+
+         //보이기
+         $('#btn-show').click(function(){
+            // $('.box').show(3000, 'easeInBack', function(){
+            //    alert('보이기 완료');
+            // });
+            // $('.box').slideDown();
+            $('.box').fadeIn();
+         })
+
+         //숨기기
+         $('#btn-hide').click(function(){
+            // $('.box').delay(2000).hide('normal');
+            // $('.box').slideUp();
+            $('.box').fadeOut();
+         })
+
+         //토글버튼
+         $('#btn-toggle').click(function(){
+            // $('.box').toggle('fast');
+            // $('.box').slideToggle();
+            $('.box').fadeToggle();
+         })
+      })
+   </script>
+</head>
+<body>
+   <button id="btn-toggle">토글버튼</button>
+   <button id="btn-show">보이기</button>
+   <button id="btn-hide">숨기기</button>
+   <div class="box">
+      <h2>제목</h2>
+      <p>   
+         1. 크기
+         show() : 숨겨져 있는 요소를 크게하면서 보이기
+         hide() : 보이는 요소를 작게하면서 숨기기
+         toggle() : show(), hide()를 번갈아가면서 실행
+         2. 슬라이드
+         slideDown() : 숨겨져 있는 요소를 슬라이드로 펼치며 보이기
+         slideUp() : 보이는 요소를 슬라이드로 접으면서 숨기기
+         slideToggle() : slideDown(), slideUp()를 번갈아가면서 실행
+         3. 투명도
+         fadeIn() : 숨겨져 있는 요소를 선명하게 표시하면서 보이기
+         fadeOut() : 보이는 요소를 흐리게 하면서 숨기기
+         fadeToggle() : fadeIn(), fadeOut()을 번갈아가면서 실행
+      </p>
+   </div>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>03_5.탐색메소드-인덱스선택</title>
+   <style>
+      #result{padding: 10px; background: #000; color:#fff;}
+      .active{background: hotpink;}
+      .choice{background: yellow; border:1px solid red;}
+   </style>
+   <script src="js/jquery-3.4.1.min.js"></script>
+   <script>
+      $(function(){
+         //eq(index) : 특정요소를 인덱스번째와 일치하는 요소찾기, eq는 equal ==
+
+         //1. .list인 요소 안에 있는 리스트 중 3번째 인덱스인 것을 찾아서
+         //    내용을 획득한 후 검색결과에 출력(리스트4를 출력해보기)
+         var liText = $('.list li').eq(3).text();  //획득
+         //구조 선택자 활용하면?
+         var liText = $('.list li:nth-child(4)').text();  //획득
+         $('#result span').text(liText);  //변경
+
+         //2. .list인 요소 안에 있는 리스트 중 뒤에서 3번째 인덱스인 것을 찾아서 똑같이 적용
+         //-를 붙이면 뒤에서부터 찾으며, 0번째가 아닌 1번째 부터 시작
+         var liText = $('.list li').eq(-3).text();  //획득
+         //구조 선택자 활용하면?
+         var liText = $('.list li:nth-last-child(3)').text();  //획득
+         $('#result span').text(liText);  //변경
+
+      })
+   </script>
+</head>
+<body>
+   <div id="result">검색결과: <span></span></div>
+   
+   <!-- ul>li*10{리스트$} -->
+   <ul class="list">
+      <li>리스트1</li>
+      <li>리스트2</li>
+      <li>리스트3</li>
+      <li>리스트4</li>
+      <li>리스트5</li>
+      <li>리스트6</li>
+      <li class="active">리스트7</li>
+      <li>리스트8</li>
+      <li>리스트9</li>
+      <li>리스트10</li>
+   </ul>
+
+   <ul class="gnb">
+      <li><a href="#">링크1</a></li>
+      <li><a href="#" class="active">링크2</a></li>
+      <li><a href="#">링크3</a></li>
+   </ul>
+
+
+</body>
+</html>

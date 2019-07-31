@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>04_6.조작메소드-크기</title>
+   <style>
+      .box{
+         width: 100px; height: 100px;
+         margin: 10px; padding: 10px;
+         border:10px solid red;
+         background: orange;
+      }
+   </style>
+   <script src="js/jquery-3.4.1.min.js"></script>
+   <script>
+      $(function(){
+         //박스의 넓이와 높이 구하기
+         $('.result1 span').text($('.box').width());
+         $('.result2 span').text($('.box').innerWidth());
+         $('.result3 span').text($('.box').outerWidth());
+         $('.result4 span').text($('.box').outerWidth(true));
+         $('.result5 span').text($('.box').height());
+         $('.result6 span').text($('.box').innerHeight());
+         $('.result7 span').text($('.box').outerHeight());
+         $('.result8 span').text($('.box').outerHeight(true));
+
+         //박스의 크기 변경
+         //메소드안에 변경할 크기를 넣는다.
+         $('.box').width(200);
+         $('.box').innerWidth(200);
+      })
+   </script>
+</head>
+<body>
+   <div class="box"></div>
+   <h3>박스의 넓이와 높이 구하기</h3>
+   <div class="result1">width:<span></span></div>
+   <div class="result2">width+padding:<span></span></div>
+   <div class="result3">width+padding+border:<span></span></div>
+   <div class="result4">width+padding+border+margin:<span></span></div>
+   <div class="result5">height:<span></span></div>
+   <div class="result6">height+padding:<span></span></div>
+   <div class="result7">height+padding+border:<span></span></div>
+   <div class="result8">height+padding+border+margin:<span></span></div>
+</body>
+</html>

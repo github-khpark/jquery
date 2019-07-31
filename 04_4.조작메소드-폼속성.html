@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>04_4.조작메소드-폼속성</title>
+   <script src="js/jquery-3.4.1.min.js"></script>
+   <script>
+      $(function(){
+         /*
+            val() : 입력양식(form)의 값(value)를 제어하는 메소드
+            input은 닫는태그가 없는 빈요소이므로 값을 제어할 때 text(), html()를 사용할 수 없다.
+            따라서 value의 값을 제어할때 prop(), val()를 사용한다.         
+         */
+
+         //1. type이 text인 요소에 값 넣기 
+         $('[type=text]').val('텍스트1');
+         $('[type=text]').prop('value','텍스트2');
+
+         //2. type이 password인 요소에 값 넣기
+         $('[type=password]').val('텍스트1');
+         $('[type=password]').prop('value','텍스트2');
+
+         //3. type이 hidden인 요소에 값 넣기
+         $('[type=hidden]').val('텍스트1');
+         $('[type=hidden]').prop('value','텍스트2');
+
+         //4. textarea에 값 넣기 
+         $('textarea').val('텍스트1');
+         //text()메소드로 값을 넣을 수도 있지만 val()로 넣은 값이 우선권을 가진다.
+         $('textarea').text('텍스트2');
+
+         //5. select의 옵션 변경하기 
+         $('select option').eq(1).prop('selected',true);
+
+         //////////////////////////////////////////////////////////
+         //1. type=text의 값 가져오기 
+         var val=$('[type=text]').val();
+         //2. textarea의 값 가져오기
+         var val=$('textarea').val();
+         //3. select(선택되어진) 값 가져오기 => 최종적으로 선택되어진 option의 value를 획득한다.
+         var val=$('select').val();
+         //4. select(선택되어진) 내용 가져오기 
+         var val=$('select option:selected').text();
+         //5. 체크된 라디오 값 가져오기 
+         var val=$('[type=radio]:checked').val();
+         //6. 체크된 라디오 내용 가져오기 
+         var val=$('[type=radio]:checked').parent().text();
+         //7. 체크된 체크박스 값 가져오기 
+         var val=$('[type=checkbox]:checked').val();
+         //8. 체크된 체크박스 내용 가져오기 
+         var val=$('[type=checkbox]:checked').parent().text();
+         $('#result span').text(val);
+
+         //이벤트를 사용하여 변경되는 값 출력하기
+         //select 
+         $('select').change(function(){
+            var text=$('select option:selected').text();
+            var val=$('select option:selected').val();
+            $('#result span').text(val);
+         })
+
+         //radio
+         $('[type=radio]').change(function(){
+            var text=$('[type=radio]:checked').parent().text();
+            var val=$('[type=radio]:checked').val();
+            $('#result span').text(text);
+         })
+
+         //checkbox
+         $('[type=checkbox]').change(function(){
+            var text=$('[type=checkbox]:checked').parent().text();
+            // var val=$('[type=checkbox]:checked').val(); 하나의 값만을 출력하고 있다.
+            var result='';
+            $('[type=checkbox]').each(function(i, el){
+               var checkState=$(el).prop('checked');
+               // console.log(checkState);
+               if(checkState){//체크가 되어 있다면
+                  //result에 값을 누적시킨다.
+                  result+=$(el).val();
+               }
+            })
+            $('#result span').text(result);
+         })
+      })
+   </script>
+</head>
+<body>
+   <div id="result">검색결과: <span></span></div>
+   <input type="text">
+   <input type="password">
+   <input type="hidden">
+   <br>
+   <textarea name="" id="" cols="30" rows="10"></textarea>
+   <br>
+   <select name="" id="">
+      <option value="red">빨간색</option>
+      <option value="green">초록색</option>
+      <option value="blue">파랑색</option>
+   </select>
+   <div class="radio">
+      <label><input type="radio" name="color" value="red" checked>빨간색</label>
+      <label><input type="radio" name="color" value="green">초록색</label>
+      <label><input type="radio" name="color" value="blue">파란색</label>
+   </div>
+   <div class="checkbox">
+      <label><input type="checkbox" name="color2" value="red">빨간색</label>
+      <label><input type="checkbox" name="color2" value="green" checked>초록색</label>
+      <label><input type="checkbox" name="color2" value="blue">파란색</label>
+   </div>
+</body>
+</html>
