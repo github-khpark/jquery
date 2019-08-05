@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>08.좌표값구하기</title>
+   <style>
+      *{margin: 0; padding: 0;}
+      /* 스크롤 발생 */
+      body{height: 3000px;}
+      #wrap{position: fixed;}
+      #box{width: 200px; height: 200px; background: yellow;}
+   </style>
+   <script src="js/jquery-3.4.1.min.js"></script>
+   <script>
+      $(function(){
+         /*
+           *client와 page는 스크롤이 발생되지 않는다면 차이가 없다.
+            screen : 모니터화면 기준 
+            client : 보이는 브라우저 화면 기준 
+            page   : 전체 문서 기준(스크롤 값까지 포함)            
+            offset : 이벤트 대상 기준
+         */
+
+         $(document).mousemove(function(e){
+            $('#result').empty()
+            .append(`
+               screen:${e.screenX}, ${e.screenY}<br>
+               client:${e.clientX}, ${e.clientY}<br>
+               page:${e.pageX}, ${e.pageY}<br>
+               offset:${e.offsetX}, ${e.offsetY}
+            `)
+         })
+
+         $('#box').mousemove(function(e){
+            $(this).empty()
+            .append(`
+               screen:${e.screenX}, ${e.screenY}<br>
+               client:${e.clientX}, ${e.clientY}<br>
+               page:${e.pageX}, ${e.pageY}<br>
+               offset:${e.offsetX}, ${e.offsetY}
+            `)
+         })
+      })
+   </script>
+</head>
+<body>
+  <div id="wrap">
+      <h2>document영역에 마우스를 움직일때 좌표값</h2>   
+      <div id="result"></div>
+      <h2>box영역에 마우스를 움직일때 좌표값</h2>
+      <div id="box"></div>
+  </div>
+</body>
+</html>

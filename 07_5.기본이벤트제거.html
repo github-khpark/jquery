@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>07_5.기본이벤트 제거</title>
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+   <style>
+      .link2{position: relative; display: inline-block;}
+      .link2 img{vertical-align: top;}
+      .link2 span{
+         position: absolute; top:0; color:#fff;
+         font-size: 20px;
+      }
+      .link2 button{
+         position: absolute; top:10px; right:5px;
+         background: none; border:0;
+         font-size: 1.5em; color:#fff;
+      }
+      .link2 button.like{color:hotpink;}   
+   </style>
+   <script src="js/jquery-3.4.1.min.js"></script>
+   <script>
+      $(function(){
+         /*
+            e.preventDefault()   : 기본 이벤트 제거
+            e.stopPropagation()  : 중첩으로 마크업되어 있는 요소를 클릭시 이벤트가 전파되는 것을 막는다.
+            return false;        : 위에 있는 두가지 기능을 모두 수행하는 역할
+         */
+         
+         $('.link1').click(function(e){
+            alert('클릭함.');
+            // e.preventDefault();
+            return false;
+         })
+
+         //좋아요/좋아요취소를 할 수 있는 이벤트
+         $('button').click(function(e){               
+            if($(this).hasClass('like')){ //like가 있는 상태/
+               alert('좋아요를 취소합니다.');
+            }else{
+               alert('좋아요');
+            }
+            
+            $(this).toggleClass('like');
+            // e.preventDefault(); //1.기본 이벤트 제거
+            // e.stopPropagation(); //2.이벤트 전파막기
+            return false; //1+2.a태그의 이벤트 전파를 막는다.
+         })
+
+         //카카오페이지로 이동한다는 알림창 띄우기
+         $('.link2').click(function(){
+            alert('카카오페이지로 이동합니다.');
+         })
+      })
+   </script>
+</head>
+<body>
+   <h2>네이버 사이트로 이동하는 기능 제거</h2>
+   <a href="https://naver.com" class="link1">네이버로 이동하기</a>
+
+   <h2>이미지를 감싸고 있는 a태그를 누르면 카카오페이지로 이동, 버튼을 누르면 좋아요 수행</h2>
+   <a href="https://store.kakaofriends.com" class="link2">
+      <img src="img/friends_apeach.jpg" alt="">
+      <span>카카오프렌즈로 가기</span>
+      <button class="fas fa-heart"></button>
+   </a>
+</body>
+</html>

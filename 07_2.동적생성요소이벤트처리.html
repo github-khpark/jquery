@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>07_2.동적생성요소 이벤트처리</title>
+   <script src="js/jquery-3.4.1.min.js"></script>
+   <script>
+      $(function(){
+         //요소 추가버튼을 누르면 리스트 생성하기 
+         $('#add').click(function(){
+            $('ul').append('<li>동적리스트</li>');
+         })
+
+         //리스트를 클릭하면 해당 리스트 삭제하기
+         // $('li').click(function(){
+         //    //원래 있었던 리스트만 삭제되고 동적으로 생성된 리스트는 삭제가 불가하다.
+         //    $(this).remove();
+         // })
+
+         //on()메소드를 사용하여 "동적"으로 생성된 요소를 삭제하기
+         //$(제어할 대상을 가지고 있는 부모).on('이벤트명', '제어대상', 콜백함수)
+         $('ul').on('click','li',function(){ // on(이벤트, 제어대상, 어떤일)
+            //현재 this는 ul이 아닌 li를 가리킨다.
+            $(this).remove();
+         })
+      })
+   </script>
+</head>
+<body>
+  <button id="add">요소추가</button>
+  <ul>
+     <li>기존리스트</li>
+  </ul>
+</body>
+</html>

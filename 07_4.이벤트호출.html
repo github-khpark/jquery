@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>07_4.이벤트 호출</title>
+   <script src="js/jquery-3.4.1.min.js"></script>
+   <script>
+      $(function(){
+         //trigger() : 이벤트를 호출한다.
+
+         $('#btn').click(function(){
+            alert('버튼을 눌렀다.');
+         })
+         //클릭을 한번 수행한다.
+         .click();
+
+         //trigger()를 사용해서 click을 강제로 발생시킨다.
+         // $('#btn').trigger('click');
+         
+      })
+   </script>
+</head>
+<body>
+  <button id="btn">버튼</button>
+</body>
+</html>

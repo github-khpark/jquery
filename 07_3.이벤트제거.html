@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title></title>
+   <style>
+      .off{background: red; color:#fff;}
+   </style>
+   <script src="js/jquery-3.4.1.min.js"></script>
+   <script>
+      $(function(){
+         //off() : 이벤트를 제거한다. 
+
+         function msg(){
+            $('div').show().fadeOut();           
+         }
+
+         $('#on').click(function(){
+            $('#btn').text('실행가능').removeClass('off');
+            $('body').on('click','#btn',msg);
+         })
+
+         $('#off').click(function(){
+            $('#btn').text('실행불가').addClass('off');
+            $('body').off('click','#btn',msg);
+         })
+      })
+   </script>
+</head>
+<body>
+  <button id="btn" class="off">실행불가</button>
+  <button id="on">클릭이벤트 발생</button>
+  <button id="off">클릭이벤트 제거</button>
+  <div style="display:none;">박스</div>
+</body>
+</html>

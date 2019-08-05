@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>07_1.이벤트연결</title>
+   <style>
+      #box{width: 100px; height: 100px; background: orange;}
+   </style>
+   <script src="js/jquery-3.4.1.min.js"></script>
+   <script>
+      $(function(){
+         //on() : 이벤트 연결 메소드 
+         /*
+            box를 클릭하면 배경색이 빨간색 적용 click
+            box에 마우스를 올리면 배경색이 파란색 적용  mouseenter
+            box에 마우스를 벗어나면 배경색이 오렌지색 적용 mouseleave
+         */ 
+
+         //1. 선택자 3번사용 각 이벤트 메소드 사용
+         // $('#box').click(function(){
+         //    $(this).css('backgroundColor','red');
+         // });
+         // $('#box').mouseenter(function(){
+         //    $(this).css('backgroundColor','blue');
+         // });
+         // $('#box').mouseleave(function(){
+         //    $(this).css('backgroundColor','green');
+         // });
+
+         //2. 선택자를 한번만 사용 각 이벤트메소드를 체이닝 기법을 사용
+         // $('#box')
+         // .click(function(){
+         //    $(this).css('backgroundColor','red');
+         // })
+         // .mouseenter(function(){
+         //    $(this).css('backgroundColor','blue');
+         // })
+         // .mouseleave(function(){
+         //    $(this).css('backgroundColor','green');
+         // });
+
+         //3. 선택자를 한번만 사용 on()메소드를 3번 사용해서 이벤트 연결
+         // $('#box')
+         // .on('click',function(){
+         //    $(this).css('backgroundColor','red');
+         // })
+         // .on('mouseenter',function(){
+         //    $(this).css('backgroundColor','blue');
+         // })
+         // .on('mouseleave',function(){
+         //    $(this).css('backgroundColor','green');
+         // });
+
+         //4. 선택자를 한번만 사용 on()메소드를 한번만 사용해서 이벤트 연결
+         $('#box').on({
+           click:function(){
+               $(this).css('backgroundColor','red');
+           },
+           mouseenter:function(){
+               $(this).css('backgroundColor','blue');
+           },
+           mouseleave:function(){
+               $(this).css('backgroundColor','orange');
+           }
+        })
+        
+      });
+   </script>
+</head>
+<body>
+  <div id="box"></div>
+</body>
+</html>
